@@ -4,7 +4,13 @@ import Button from '../../UI/Button/Button';
 
 class OrderSummary extends Component {
   render() {
-    const { ingredients } = this.props;
+    const {
+      ingredients,
+      price,
+      purchaseCancelled,
+      purchaseContinued,
+    } = this.props;
+
     const ingredientSummary = Object.keys(ingredients).map(igKey => {
       return (
         <li key={igKey}>
@@ -20,13 +26,13 @@ class OrderSummary extends Component {
         <p>A delicious burger with the following ingredients</p>
         <ul>{ingredientSummary}</ul>
         <p>
-          <strong>Total price: {this.props.price.toFixed(2)}</strong>
+          <strong>Total price: {price.toFixed(2)}</strong>
         </p>
         <p>Continue to Checkout?</p>
-        <Button btnType="Danger" clicked={this.props.purchaseCancelled}>
+        <Button btnType="Danger" clicked={purchaseCancelled}>
           CANCEL
         </Button>
-        <Button btnType="Success" clicked={this.props.purchaseContinued}>
+        <Button btnType="Success" clicked={purchaseContinued}>
           CONTINUE
         </Button>
       </>

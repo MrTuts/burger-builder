@@ -31,7 +31,7 @@ class BuildControls extends Component {
           className={classes.OrderButton}
           onClick={this.props.ordered}
         >
-          ORDER NOW
+          {this.props.isAuth ? 'ORDER NOW' : 'SING UP TO ORDER'}
         </button>
       </div>
     );

@@ -48,3 +48,8 @@ export const checkAuthTimeout = expirationTime => async dispatch => {
     dispatch(logout());
   }, expirationTime * 1000);
 };
+
+export const setAuthRedirectPath = path => ({
+  type: actionTypes.SET_AUTH_REDIRECT_PATH,
+  path,
+});

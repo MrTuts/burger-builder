@@ -40,7 +40,6 @@ export const auth = (email, password, isSignUp) => async dispatch => {
     dispatch(authSuccess(response.data.idToken, response.data.localId));
     dispatch(checkAuthTimeout(response.data.expiresIn));
   } catch (error) {
-    console.log(error);
     dispatch(authFail(error.response.data.error));
   }
 };

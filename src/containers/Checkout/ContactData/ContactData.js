@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { checkValidity } from '../../../shared/utility';
 import { purchaseBurger } from '../../../store/actions';
 import Button from '../../../components/UI/Button/Button';
 import classes from './ContactData.css';
@@ -115,28 +116,6 @@ class ContactData extends Component {
     this.props.onOrderBurger(order, this.props.token);
   };
 
-  checkValidity(value, rules) {
-    if (!rules) {
-      return true;
-    }
-
-    let isValid = true;
-
-    if (rules.required) {
-      isValid = value.trim() !== '' && isValid;
-    }
-
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-    }
-
-    if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
-    }
-
-    return isValid;
-  }
-
   inputChangedHandler = (event, inputIdentifier) => {
     const updatedOrderForm = { ...this.state.orderForm };
     const updateFormElement = {
@@ -144,7 +123,7 @@ class ContactData extends Component {
     };
 
     updateFormElement.value = event.target.value;
-    updateFormElement.valid = this.checkValidity(
+    updateFormElement.valid = checkValidity(
       updateFormElement.value,
       updateFormElement.validation,
     );
